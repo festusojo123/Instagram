@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SignUpViewController.h
 //  Instagram
 //
 //  Created by festusojo on 7/8/19.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface SignUpViewController : UIViewController
 
+- (IBAction)didTapSignUp:(id)sender;
 
 @end
 
