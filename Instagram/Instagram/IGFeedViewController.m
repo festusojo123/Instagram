@@ -15,19 +15,12 @@
 @end
 
 @implementation IGFeedViewController
-- (IBAction)logout:(id)sender {
+- (IBAction)logoutButtonPress:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];
-    [self performSegueWithIdentifier:@"logoutSegue" sender:nil];
+    [self performSegueWithIdentifier:@"signoutPress" sender:nil];
 }
-
-//- (IBAction)logout:(id)sender {
-//    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-//        UIViewController *loginViewController = [UIStoryboard instantiateViewControllerWithIdentifier:@"SignUpViewController"];
-//        AppDelegate.window.rootViewController = loginViewController;
-//    }];
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

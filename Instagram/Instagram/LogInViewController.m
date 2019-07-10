@@ -41,10 +41,14 @@
         } else {
             NSLog(@"User logged in successfully");
 
-            [self performSegueWithIdentifier:@"homeSegue" sender:nil];
+            [self performSegueWithIdentifier:@"returningUser" sender:nil];
             // display view controller that needs to shown after successful login
         }
     }];
+}
+
+- (IBAction)backButton:(id)sender {
+    [self performSegueWithIdentifier:@"back" sender:nil];
 }
 
 - (IBAction)didTapSignIn:(id)sender {

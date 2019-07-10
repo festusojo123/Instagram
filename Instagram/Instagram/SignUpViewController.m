@@ -44,19 +44,19 @@
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
             NSLog(@"User registered successfully");
-            
+
         // manually segue to logged in view
-        [self performSegueWithIdentifier:@"signupSegue" sender:nil];
+        [self performSegueWithIdentifier:@"newUser" sender:nil];
+            NSLog(@"broken");
         }
     }];
 }
-
-- (IBAction)didTapSignUp:(id)sender {
+- (IBAction)newUser:(id)sender {
     [self registerUser];
 }
 
-- (IBAction)didTapLogIn:(id)sender {
-    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+- (IBAction)returningUser:(id)sender {
+    [self performSegueWithIdentifier:@"returningUser" sender:nil];
 }
 
 @end

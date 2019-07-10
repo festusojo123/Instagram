@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IGFeedViewController : UITableViewController
+@interface IGFeedViewController : UIViewController
 
 @end
 

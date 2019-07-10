@@ -20,17 +20,18 @@
     
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
-        configuration.applicationId = @"codepathInstagram";
-        configuration.server = @"http://codepathfbinstagram.herokuapp.com/parse";
+        configuration.applicationId = @"myAppId";
+        configuration.server = @"http://ojo-instagram.herokuapp.com/parse";
     }];
     
     [Parse initializeWithConfiguration:config];
     
-    if (PFUser.currentUser) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
-        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
-    }
+//    
+//    if (PFUser.currentUser) {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//
+//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"IGFeedViewController"];
+//    }
     
     return YES;
 }
