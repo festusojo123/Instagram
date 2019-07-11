@@ -212,11 +212,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw3-xY-LmW">
+                                                    <rect key="frame" x="186" y="204" width="106" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionBody" destination="8zl-ao-I14" id="SME-fH-Jdc"/>
                                             <outlet property="postImage" destination="RCp-a5-0XN" id="uCQ-19-Yqp"/>
+                                            <outlet property="timestamp" destination="dw3-xY-LmW" id="UAz-Kt-Mzj"/>
                                             <outlet property="usernameText" destination="tK7-Xb-nJB" id="5iE-Qh-Zxq"/>
                                             <segue destination="s55-aj-voN" kind="presentation" identifier="detailer" id="0g1-eA-I6M"/>
                                         </connections>

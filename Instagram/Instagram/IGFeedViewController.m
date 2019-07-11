@@ -111,6 +111,17 @@
         cell.captionBody.text = post.author.username;
         cell.usernameText.text = post.caption;
     
+        // Format and set createdAtString
+        // Format createdAt date string
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // Configure the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        // Convert Date to String
+        cell.timestamp.text = [formatter stringFromDate:post.createdAt];
+    
         //images are harder lol
         PFFileObject *pfobj = post.image;
         //passes data into function
