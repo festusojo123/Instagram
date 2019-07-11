@@ -16,7 +16,7 @@
 @interface IGFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *igFeed;
 // declare a NSArray to store posts later
-@property (nonatomic, strong) NSArray *posts;
+@property (nonatomic, strong) NSMutableArray *posts;
 @end
 
 @implementation IGFeedViewController
@@ -50,6 +50,7 @@
 
     //refresh stuff
     [super viewDidLoad];
+    
     // Initialize a UIRefreshControl
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -62,7 +63,7 @@
     NSLog(@"fetching");
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    // [query whereKey:@"likesCount" greaterThan:@100];
+    [query orderByDescending:@"postID"];
     [query includeKey:@"author"];
     query.limit = 20;
     
@@ -70,7 +71,7 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             // Get posts and store into self.posts
-            self.posts = posts;
+            self.posts = [NSMutableArray arrayWithArray:posts];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -85,36 +86,19 @@
     return self.posts.count;
 }
 
-    // Makes a network request to get updated data
-    // Updates the tableView with the new data
-    // Hides the RefreshControl
-//- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-//
-//        // Create NSURL and NSURLRequest
-//
-//        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-//                                                              delegate:nil
-//                                                         delegateQueue:[NSOperationQueue mainQueue]];
-//        session.configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-//
-//        NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-//                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//
-//                                                    // ... Use the new data to update the data source ...
-//                                                      self.posts = posts;
-//                                                    // Reload the tableView now that there is new data
-//                                                    [self.tableView reloadData];
-//
-//                                                    // Tell the refreshControl to stop spinning
-//                                                    [refreshControl endRefreshing];
-//
-//                                                }];
-//
-//        [task resume];
-//    }
+    // Updates the View with the new data
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [self fetcher];
+    // ... Use the new data to update the data source ...
+    self.posts = _posts;
+    // Reload the imageView now that there is new data
+    [self.igFeed reloadData];
+    // Tell the refreshControl to stop spinning
+    [refreshControl endRefreshing];
+    }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-        // Create the post cell with the dequeuable reuse idenfitierrs
+        // Create the post cell with the dequeuable reuse idenfitiers
         IGCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Reuse Identifier"];
         
         // Get the post from the self.posts array
@@ -122,21 +106,18 @@
         
         // set cell poperties (title, image, caption)
         //drag all things into IGCell first
-        //cell.someLabel.text = post.author.username example of how to set equal
+        //cell.someLabel.text = post.author.username   --   example of how to set equal
         cell.captionBody.text = post.author.username;
         cell.usernameText.text = post.caption;
     
         //images are harder
     
         PFFileObject *pfobj = post.image;
-        // NSString *imageURL = [NSURL URLWithString:pfobj.url];
-    [pfobj getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (data) {
-            cell.postImage.image = [UIImage imageWithData:data];
-        }
-    }];
-    
-        // [cell.postImage setImageWithURL:imageURL];
+        [pfobj getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            if (data) {
+                cell.postImage.image = [UIImage imageWithData:data];
+            }
+        }];
   
         // return cell
         return cell;
