@@ -9,17 +9,27 @@
 #import "IGFeedViewController.h"
 #import "Parse/Parse.h"
 #import "AppDelegate.h"
+#import "IGCell.h"
+#import "Post.h"
 
-@interface IGFeedViewController ()
-
+@interface IGFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *igFeed;
+// declare a NSArray to store posts later
+@property (nonatomic, strong) NSArray *posts;
 @end
 
 @implementation IGFeedViewController
+
 - (IBAction)logoutButtonPress:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];
     [self performSegueWithIdentifier:@"signoutPress" sender:nil];
+}
+
+- (IBAction)clickNewPost:(id)sender {
+    NSLog(@"hi");
+    [self performSegueWithIdentifier:@"newPost" sender:nil];
 }
 
 - (void)viewDidLoad {
@@ -30,72 +40,50 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Fetch data from Parse
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    query.limit = 20;
     
-    return cell;
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            // Get posts and store into self.posts
+            self.posts = posts;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section:(UITableView *)tableView {
+    // return the number of posts
+    return self.posts.count;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+        // Create the post cell with the dequeuable reuse idenfitierrs
+        IGCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IGCell"];
+        
+        // Get the post from the self.posts array
+        Post *post = self.posts[indexPath.row];
+        
+        // set cell poperties (title, image, caption)
+        //drag all things into IGCell first
+        //cell.someLabel.text = post.author.username example of how to set equal
+        cell.captionBody.text = post.author.username;
+        cell.usernameText.text = post.caption;
+        
+        //images are harder
+        // NSString *imageStringURL = post.image.url;
+       // NSString *imageURL = [NSURL URLWithString:imageStringURL];
+  
+        // return cell
+        return cell;
+    }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

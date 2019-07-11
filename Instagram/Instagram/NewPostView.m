@@ -7,11 +7,13 @@
 //
 
 #import "NewPostView.h"
+#import "Post.h"
 #import <UIKit/UIKit.h>
 
-@interface NewPostView ()
+@interface NewPostView () UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>;
+@property (weak, nonatomic) IBOutlet UITextView *caption;
+@property (nonatomic, strong) UIImage *photo;
 
-//: UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @end
 
 @implementation NewPostView
@@ -21,6 +23,20 @@
     // Do any additional setup after loading the view.
 }
 
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
@@ -28,9 +44,18 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
+    [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)onPost:(id)sender {
+    [Post postUserImage:self.photo withCaption:self.caption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        // asd
+    }];
+    
+    [self performSegueWithIdentifier:@"uponPost" sender:nil];
 }
 
 - (IBAction)camera:(id)sender {

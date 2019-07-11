@@ -1,22 +1,36 @@
 PODS:
+  - AFNNetworking (3.4.8):
+    - SDWebImage
+    - SVProgressHUD
   - Bolts/Tasks (1.9.0)
   - Parse (1.17.2):
     - Parse/Core (= 1.17.2)
   - Parse/Core (1.17.2):
     - Bolts/Tasks (~> 1.9)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - AFNNetworking
   - Parse
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AFNNetworking
     - Bolts
     - Parse
+    - SDWebImage
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
+  AFNNetworking: c0a09b2950113cc8a939c0c8de4f91bf7020737a
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: eb886bee805b09c166ab01854c73f945b49df7ee
+PODFILE CHECKSUM: 62ceca2d11e1a1e781dc39fc07ac32965deef452
 
 COCOAPODS: 1.7.2
