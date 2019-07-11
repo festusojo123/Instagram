@@ -10,7 +10,7 @@
 #import "Post.h"
 #import <UIKit/UIKit.h>
 
-@interface NewPostView () UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>;
+@interface NewPostView () UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>;
 @property (weak, nonatomic) IBOutlet UITextView *caption;
 @property (nonatomic, strong) UIImage *photo;
 
@@ -44,7 +44,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
-    [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
+    self.photo = [self resizeImage:editedImage withSize:CGSizeMake(300, 300)];
     
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
