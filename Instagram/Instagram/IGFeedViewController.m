@@ -12,6 +12,7 @@
 #import "IGCell.h"
 #import "Post.h"
 #import <Foundation/Foundation.h>
+#import "DetailView.h"
 
 @interface IGFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *igFeed;
@@ -63,7 +64,7 @@
     NSLog(@"fetching");
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query orderByDescending:@"postID"];
+    [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     query.limit = 20;
     
@@ -110,11 +111,12 @@
         cell.captionBody.text = post.author.username;
         cell.usernameText.text = post.caption;
     
-        //images are harder
-    
+        //images are harder lol
         PFFileObject *pfobj = post.image;
+        //passes data into function
         [pfobj getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             if (data) {
+                //sets input data into image and sets them equal to each other, so it can have an image to display
                 cell.postImage.image = [UIImage imageWithData:data];
             }
         }];
@@ -122,6 +124,28 @@
         // return cell
         return cell;
     }
+
+/*
+ #pragma mark - Navigation
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get sthe new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"detailer"])
+    {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.igFeed indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        
+        DetailView *detailView = [segue destinationViewController];
+        detailView.igPost = post;
+        tappedCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+    }
+}
 
     @end
 
