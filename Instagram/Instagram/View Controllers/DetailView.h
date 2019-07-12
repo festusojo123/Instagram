@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailView : UIViewController
 
+//this is a Post, which is the data post holding the info from each particular post
 @property (nonatomic, strong) Post *igPost;
 
 @end

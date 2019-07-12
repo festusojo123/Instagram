@@ -10,9 +10,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+//this designates a window for Parse to interact with and allows the changeRootViewControllerWithID function to be seen outside of this file
 @property (strong, nonatomic) UIWindow *window;
 - (void)changeRootViewControllerWithID:(NSString *)storyboardId; 
-
 
 @end
 

@@ -10,6 +10,7 @@
 
 @interface SignUpViewController : UIViewController
 
+//this sets up a button to launch the segue instead of connecting the view controller directly to the button
 - (IBAction)didTapSignUp:(id)sender;
 
 @end

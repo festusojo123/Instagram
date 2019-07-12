@@ -371,7 +371,7 @@
                     </view>
                     <connections>
                         <outlet property="caption" destination="vMk-sH-jfF" id="vLq-Rw-yEX"/>
-                        <segue destination="jfo-6Z-r8b" kind="presentation" identifier="uponPost" id="97Y-2j-1TG"/>
+                        <segue destination="xUU-b4-8RO" kind="presentation" identifier="uponPost" id="tbM-jo-ToC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fW-hf-UTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -402,9 +402,7 @@
         <image name="insta_camera_btn" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eFy-Mm-QWu"/>
-        <segue reference="ge3-TN-cJh"/>
-        <segue reference="97Y-2j-1TG"/>
+        <segue reference="tbM-jo-ToC"/>
         <segue reference="pnC-B8-VVX"/>
     </inferredMetricsTieBreakers>
 </document>

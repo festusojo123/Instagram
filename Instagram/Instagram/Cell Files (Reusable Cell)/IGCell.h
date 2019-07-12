@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IGCell : UITableViewCell
+//these are the properties that will be shown in each cell, this way other files can access these 
 @property (weak, nonatomic) IBOutlet UILabel *captionBody;
 @property (weak, nonatomic) IBOutlet UILabel *usernameText;
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;

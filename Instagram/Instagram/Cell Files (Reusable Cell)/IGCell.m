@@ -1,4 +1,3 @@
-//
 //  IGCell.m
 //  Instagram
 //
@@ -15,10 +14,10 @@
     // Initialization code
 }
 
+//this allows for the animation of one of the cells individually being selected
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
+    [super setSelected:selected animated:animated];
 }
 
 @end

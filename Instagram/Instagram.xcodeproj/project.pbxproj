@@ -150,27 +150,13 @@
 		E47A9C6022D3FBFC00C8958D /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				E47A9C6122D3FBFC00C8958D /* AppDelegate.h */,
-				E47A9C6222D3FBFC00C8958D /* AppDelegate.m */,
-				E47A9C6422D3FBFC00C8958D /* SignUpViewController.h */,
-				E47A9C6522D3FBFC00C8958D /* SignUpViewController.m */,
-				E47A9C6722D3FBFC00C8958D /* Main.storyboard */,
-				E49E7CBC22D7C19A00FC0F91 /* DetailView.h */,
-				E49E7CBD22D7C19A00FC0F91 /* DetailView.m */,
-				E4A480C422D6A9000011C446 /* IGCell.h */,
-				E4A480C522D6A9000011C446 /* IGCell.m */,
-				E4A480C122D6A1580011C446 /* Post.h */,
-				E4A480C222D6A1580011C446 /* Post.m */,
-				E47A9C9922D5653200C8958D /* NewPostView.h */,
-				E47A9C9A22D5653200C8958D /* NewPostView.m */,
-				E47A9C9622D53E4100C8958D /* LogInViewController.h */,
-				E47A9C9722D53E4100C8958D /* LogInViewController.m */,
-				E47A9C9322D5286600C8958D /* IGFeedViewController.h */,
-				E47A9C9422D5286600C8958D /* IGFeedViewController.m */,
+				E4AC974A22D80BFC00668C22 /* Storyboards */,
+				E4AC974922D80BCE00668C22 /* Posting via Parse */,
+				E4AC974822D80BC400668C22 /* Other */,
+				E4AC974722D80B8A00668C22 /* Cell Files (Reusable Cell) */,
+				E4AC974622D80B8300668C22 /* View Controllers */,
+				E4AC974322D80B5600668C22 /* Delegate Files */,
 				E47A9C6A22D3FBFD00C8958D /* Assets.xcassets */,
-				E47A9C6C22D3FBFD00C8958D /* LaunchScreen.storyboard */,
-				E47A9C6F22D3FBFD00C8958D /* Info.plist */,
-				E47A9C7022D3FBFD00C8958D /* main.m */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -191,6 +177,68 @@
 				E47A9C8722D3FBFD00C8958D /* Info.plist */,
 			);
 			path = InstagramUITests;
+			sourceTree = "<group>";
+		};
+		E4AC974322D80B5600668C22 /* Delegate Files */ = {
+			isa = PBXGroup;
+			children = (
+				E47A9C6122D3FBFC00C8958D /* AppDelegate.h */,
+				E47A9C6222D3FBFC00C8958D /* AppDelegate.m */,
+			);
+			path = "Delegate Files";
+			sourceTree = "<group>";
+		};
+		E4AC974622D80B8300668C22 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E47A9C6422D3FBFC00C8958D /* SignUpViewController.h */,
+				E47A9C6522D3FBFC00C8958D /* SignUpViewController.m */,
+				E49E7CBC22D7C19A00FC0F91 /* DetailView.h */,
+				E49E7CBD22D7C19A00FC0F91 /* DetailView.m */,
+				E47A9C9A22D5653200C8958D /* NewPostView.m */,
+				E47A9C9922D5653200C8958D /* NewPostView.h */,
+				E47A9C9622D53E4100C8958D /* LogInViewController.h */,
+				E47A9C9722D53E4100C8958D /* LogInViewController.m */,
+				E47A9C9322D5286600C8958D /* IGFeedViewController.h */,
+				E47A9C9422D5286600C8958D /* IGFeedViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E4AC974722D80B8A00668C22 /* Cell Files (Reusable Cell) */ = {
+			isa = PBXGroup;
+			children = (
+				E4A480C422D6A9000011C446 /* IGCell.h */,
+				E4A480C522D6A9000011C446 /* IGCell.m */,
+			);
+			path = "Cell Files (Reusable Cell)";
+			sourceTree = "<group>";
+		};
+		E4AC974822D80BC400668C22 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				E47A9C6F22D3FBFD00C8958D /* Info.plist */,
+				E47A9C7022D3FBFD00C8958D /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		E4AC974922D80BCE00668C22 /* Posting via Parse */ = {
+			isa = PBXGroup;
+			children = (
+				E4A480C122D6A1580011C446 /* Post.h */,
+				E4A480C222D6A1580011C446 /* Post.m */,
+			);
+			path = "Posting via Parse";
+			sourceTree = "<group>";
+		};
+		E4AC974A22D80BFC00668C22 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E47A9C6722D3FBFC00C8958D /* Main.storyboard */,
+				E47A9C6C22D3FBFD00C8958D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		E95AE496107FB8BD9815F0DE /* Pods */ = {

@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "Parse/Parse.h"
 
+//these are the fields from the form that the user can type into so we can store/manipulate them later
 @interface SignUpViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -17,7 +18,6 @@
 @end
 
 @implementation SignUpViewController
-
 
 //initial set up to begin loading page
 - (void)viewDidLoad {
@@ -40,6 +40,7 @@
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        //checks for error with adding user info to Parse databse
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
         } else {
@@ -51,10 +52,13 @@
         }
     }];
 }
+
+//this calls the user, i abstracted away the function to make it cleaner to read
 - (IBAction)newUser:(id)sender {
     [self registerUser];
 }
 
+//this option allows a returning user to go to my login view controller instead of registering, for better UI, I could change this in a later version of the app
 - (IBAction)returningUser:(id)sender {
     [self performSegueWithIdentifier:@"returningUser" sender:nil];
 }

@@ -12,6 +12,7 @@
 #import "Post.h"
 
 @interface DetailView ()
+//these are the outlets that allow us to interact with the different images and files from the view controllor
 @property (weak, nonatomic) IBOutlet UIImageView *tweetImage;
 @property (weak, nonatomic) IBOutlet UILabel *timestampDetails;
 @property (weak, nonatomic) IBOutlet UILabel *usernameText;
@@ -23,11 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
+    // indexes into the Post data type, this one specifically called igPost to allow us to view those in the details page
     self.captionText.text = self.igPost[@"caption"];
     self.usernameText.text = self.igPost[@"author"][@"username"];
-    
     // Format and set createdAtString
     // Format createdAt date string
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -38,12 +37,11 @@
     formatter.timeStyle = NSDateFormatterNoStyle;
     // Convert Date to String
     self.timestampDetails.text = [formatter stringFromDate:self.igPost.createdAt];
-    
+    //this makes sure the text itself is formatted correctly for the size of the boxes
     [self.captionText sizeToFit];
     [self.usernameText sizeToFit];
     [self.timestampDetails sizeToFit];
-    
-    //images are harder lol
+    //images are harder lol, similar code from IGFeedViewController.m, primarily using the PFFile properties Parse provides us with
     PFFileObject *pfobj = _igPost[@"image"];
     //passes data into function
     [pfobj getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -54,6 +52,7 @@
     }];
 }
 
+//this allows us to go back, hard coding the segue instead of directly dragging from the button to the view controller
 - (IBAction)clickOnBack:(id)sender {
         [self performSegueWithIdentifier:@"back" sender:nil];
 }

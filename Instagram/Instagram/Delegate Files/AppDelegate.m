@@ -15,26 +15,22 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(  NSDictionary *)launchOptions {
-    
+    //this communicates with the Parse server
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-        
+        //this specifies which Parse serve to go to
         configuration.applicationId = @"myAppId";
         configuration.server = @"http://ojo-instagram.herokuapp.com/parse";
     }];
-    
     [Parse initializeWithConfiguration:config];
     
     // Code to initialize Parse
-    // (See above section 'Parse `initializeWithConfiguration` vs `setApplicationId`', if you have not already set it up)
-    
     if (PFUser.currentUser) {
+        //this verifies the user is authenticated after logging in
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
+        //this (after setting up what the Authenticated View should be) allows the user to stay logged in
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
     }
-    
     return YES;
 
 }
